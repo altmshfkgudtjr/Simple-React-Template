@@ -1,0 +1,15 @@
+{
+  "short_name": "APP-NAME",
+  "name": "Display App Name",
+  "icons": [
+    {
+      "src": "favicons/favicon_24x24.png",
+      "sizes": "48x48 24x24",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

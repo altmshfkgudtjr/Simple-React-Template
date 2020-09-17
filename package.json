@@ -1,0 +1,53 @@
+{
+  "name": "APP-NAME",
+  "version": "1.0.0",
+  "private": false,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "cross-env": "^7.0.2",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet-async": "^1.0.6",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3",
+    "react-side-effect": "^2.1.0",
+    "react-spring": "^8.0.27",
+    "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "prebuild": "react-scripts test --watchAll=false",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "postbuild": "cp -r build/* ../backend/src/client",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2",
+    "react-immutable-proptypes": "^2.2.0"
+  },
+  "license": "MIT",
+  "proxy": "http://localhost:5000"
+}
