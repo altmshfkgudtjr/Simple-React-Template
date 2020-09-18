@@ -1,5 +1,5 @@
 const Fetch = (url, method, sendData, callback, failed) => {
-	if (method === "GET") {
+	if (method.toUpperCase() === "GET") {
 		fetch(url, {
 			method: method,
 		})
