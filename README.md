@@ -190,7 +190,7 @@
   기본적으로 해당 모듈은 다음과 같은 인자를 필요로 합니다.
 
   - **url**< string > : Target url입니다. 예시) `/board/1/post/3`
-  - **method**< string > : HTTP 요청 메서드를 인자로 받습니다. 통신 메소드명은 반드시 대문자이여야 합니다.
+  - **method**< string > : HTTP 요청 메서드를 인자로 받습니다. 통신 메소드명은 대문자, 소문자 상관없습니다.
      `POST`, `GET`,  `DELETE`, `PUT`, `PATCH` 등이 존재합니다.
   - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. 본 파일에는 FormData를 사용한 파일 전송은 구현되어있지 않습니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
