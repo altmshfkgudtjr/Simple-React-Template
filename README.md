@@ -181,7 +181,7 @@
 
   ## Default Fetch file
 
-  기본적으로 비동기 통신을 위해서 [fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)가 사용됩니다. 해당 파일에서는 API를 쉽게 사용할 수 있도록 작성되었습니다. (파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.)
+  기본적으로 비동기 통신을 위해서 [fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)가 사용됩니다. 해당 파일에서는 API를 쉽게 사용할 수 있도록 작성되었습니다. (파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.) 
 
   ```javascript
   const Fetch = (url, method, sendData, callback, failed) => { ... };
@@ -195,6 +195,8 @@
   - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. 본 파일에는 FormData를 사용한 파일 전송은 구현되어있지 않습니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
   - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 마찬가지로 선택사항입니다.
+  
+  해당 모듈은 **Promise** 객체를 반환합니다.
 
   
 
