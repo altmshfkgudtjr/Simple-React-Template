@@ -1,6 +1,6 @@
 const Fetch = (url, method, sendData, callback, failed) => {
 	if (method.toUpperCase() === "GET") {
-		fetch(url, {
+		return fetch(url, {
 			method: method,
 		})
 		.then(res => {
@@ -26,7 +26,7 @@ const Fetch = (url, method, sendData, callback, failed) => {
 			console.log(err);
 		});
 	} else {
-		fetch(url, {
+		return fetch(url, {
 			method: method,
 			headers: {
 				'Content-Type': 'application/json'
