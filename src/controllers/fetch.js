@@ -21,9 +21,10 @@ const Fetch = (url, method, sendData, callback, failed) => {
 			if (typeof(callback) === 'function') {
 				callback(res);
 			}
+			return res;
 		})
 		.catch((err)=> {
-			console.log(err);
+			return err;
 		});
 	} else {
 		return fetch(url, {
@@ -51,9 +52,10 @@ const Fetch = (url, method, sendData, callback, failed) => {
 			if (typeof(callback) === 'function') {
 				callback(res);
 			}
+			return res;
 		})
 		.catch((err)=> {
-			console.log(err);
+			return err;
 		});
 	}
 }

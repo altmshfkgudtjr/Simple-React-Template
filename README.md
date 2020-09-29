@@ -195,8 +195,30 @@
   - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. 본 파일에는 FormData를 사용한 파일 전송은 구현되어있지 않습니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
   - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 마찬가지로 선택사항입니다.
-  
-  해당 모듈은 **Promise** 객체를 반환합니다.
+
+  해당 모듈은 **Promise** 객체를 반환합니다. 아래와 같이 사용 가능합니다.
+
+```javascript
+import Fetch from './fetch'
+
+Promise.all([
+  Fetch('/api/first', 'POST', {'key': 'value'}),
+  Fetch('/api/second', 'POST', {'key': 'value'}),
+  Fetch('/api/third', 'POST', {'key': 'value'})
+]);
+
+// or
+
+Fetch('/api/first', 'POST', {'key': 'value'}, (data) => {
+  console.log(data);		// success
+}, () => {
+  console.log("Failed");	// failed
+}).then((res) => {
+  console.log(res);			// response
+});
+```
+
+
 
   
 
