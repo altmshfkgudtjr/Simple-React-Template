@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 // lib
-import { transition } from '../../lib/styles/styles'
-import media from '../../lib/styles/media'
+import { transition } from 'lib/styles/styles'
+import media from 'lib/styles/media'
 
-/*
-	:::: Styles ::::
-*/
+const Title = ({children}) => {
+	return <Content>{children}</Content>;
+}
+
 const Content = styled.div`
 	position: relative;
 	width: 60vw;
@@ -22,13 +23,5 @@ const Content = styled.div`
 		padding: 15vh 0 .5rem 0;
 	}
 `;
-
-/*
-	:::: Store States ::::
-	children: <Components> React children components
-*/
-const Title = ({children}) => {
-	return <Content>{children}</Content>;
-}
 
 export default Title

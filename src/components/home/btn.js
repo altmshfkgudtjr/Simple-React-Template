@@ -1,17 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 // containers
-import InfoModal from '../../containers/modal/info'
+import InfoModal from 'containers/modal/Info'
 // modules
-import { showModal } from '../../modules/modal'
+import { pushModal } from 'modules/modal'
 // lib
-import { transition } from '../../lib/styles/styles'
-import palette from '../../lib/styles/palette'
+import { transition } from 'lib/styles/styles'
+import palette from 'lib/styles/palette'
 
-/*
-	:::: Styles ::::
-*/
+const Btn = () => {
+	const dispatch = useDispatch();
+
+	const modalOn = () => {
+		dispatch(pushModal('INFO', InfoModal, {title: "Simple"}));
+	};
+
+	return <Button onClick={modalOn}>Simple</Button>
+}
+
 const Button = styled.button`
 	position: relative;
 	width: 80px;
@@ -32,19 +39,4 @@ const Button = styled.button`
 	}
 `;
 
-/*
-	:::: Store States ::::
-*/
-const Btn = ({ showModal }) => {
-	const modalOn = () => showModal(InfoModal);
-
-	return <Button onClick={modalOn}>Simple</Button>
-}
-
-let mapDispatchToProps = (dispatch) => {
-	return {
-		showModal: (elem)=> dispatch(showModal(elem))
-	};
-}
-
-export default connect(undefined, mapDispatchToProps) (Btn)
+export default Btn

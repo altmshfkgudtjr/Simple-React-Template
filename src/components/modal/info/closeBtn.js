@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 // lib
-import palette from '../../../lib/styles/palette'
-import * as styles from '../../../lib/styles/styles'
+import palette from 'lib/styles/palette'
+import * as styles from 'lib/styles/styles'
 
 /*
-	:::: Styles ::::
+	ModalOff: <function> Default function, Don't remove.
 */
+const CloseBtn = ({ ModalOff }) => {
+	return <Content onClick={ModalOff}>Close Modal</Content>
+}
+
 const Content = styled.div`
 	position: relative;
 	width: 160px;
@@ -28,13 +32,5 @@ const Content = styled.div`
 		border: 1.8px solid ${palette.teal3};
 	}
 `;
-
-/*
-	:::: Store States ::::
-	ModalOff: <function> Default function, Don't remove.
-*/
-const CloseBtn = ({ ModalOff }) => {
-	return <Content onClick={ModalOff}>Close Modal</Content>
-}
 
 export default CloseBtn

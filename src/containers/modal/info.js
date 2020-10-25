@@ -1,17 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
 // components
-import Title from '../../components/modal/info/title'
-import Badge from '../../components/modal/info/badge'
-import CloseBtn from '../../components/modal/info/closeBtn'
+import Title from 'components/modal/info/Title'
+import Badge from 'components/modal/info/Badge'
+import CloseBtn from 'components/modal/info/CloseBtn'
 // lib
-import media from '../../lib/styles/media'
-import * as styles from '../../lib/styles/styles'
-import animations from '../../lib/styles/animations'
+import media from 'lib/styles/media'
+import * as styles from 'lib/styles/styles'
+import animations from 'lib/styles/animations'
 
 /*
-	:::: Styles ::::
+	PreventModalOff: <function> Default function, Don't remove.
+	ModalOff: <function> Default function, Don't remove.
+	args: <Dictionary> Arguments
 */
+const InfoModal = ({ PreventModalOff, ModalOff, args }) => {
+	return (
+	  <Container onMouseDown={PreventModalOff}>
+	  	<TitleWrapper>
+	  		<Title>
+	  			<Badge title={args['title']} /> means
+	  		</Title>
+	  		<h1>Development</h1>
+	  		<Title>should be simple.</Title>
+	  	</TitleWrapper>
+	  	<CloseBtn ModalOff={ModalOff} />
+	  </Container>
+	);
+}
+
 const Container = styled.div`
 	position: absolute;
 	left: 0;
@@ -53,24 +70,5 @@ const TitleWrapper = styled.div`
 		margin-top: 4rem;
 	}
 `;
-
-
-/*
-	:::: Store States ::::
-	PreventModalOff: <function> Default function, Don't remove.
-	ModalOff: <function> Default function, Don't remove.
-*/
-const InfoModal = ({ PreventModalOff, ModalOff }) => {
-	return (
-	  <Container onMouseDown={PreventModalOff}>
-	  	<TitleWrapper>
-	  		<Title><Badge></Badge> means</Title>
-	  		<h1>Development</h1>
-	  		<Title>should be simple.</Title>
-	  	</TitleWrapper>
-	  	<CloseBtn ModalOff={ModalOff} />
-	  </Container>
-	);
-}
 
 export default InfoModal

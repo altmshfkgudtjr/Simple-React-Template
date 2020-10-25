@@ -1,15 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 // modules
-import { dropModal } from '../../modules/modal'
+import { popModal, deleteModal } from 'modules/modal'
 // lib
-import zIndex from '../../lib/styles/zIndex'
-import animations from '../../lib/styles/animations'
+import zIndex from 'lib/styles/zIndex'
+import animations from 'lib/styles/animations'
 
-/*
-	:::: Styles ::::
-*/
+const Modal = ()=> {
+	const dispatch = useDispatch();
+	const modalList = useSelector(state => state.modal.modalList);
+	const show = modalList.length !== 0;
+	
+	const PreventModalOff = e => e.stopPropagation();
+
+	const onMouseDown = (id) => {
+		dispatch(deleteModal(id));
+	}
+
+	const ModalList = modalList.map(modal => {
+		const Content = modal['elem'];
+		return <Content key={modal['id']}
+										PreventModalOff={PreventModalOff}
+										ModalOff={() => { onMouseDown(modal['id']) }}
+										args={modal['args']} />;
+	});
+
+	useEffect(() => {
+		if (show) {
+			document.querySelector('body').style.overflow = 'hidden';
+		} else {
+			document.querySelector('body').removeAttribute('style');
+		}
+	}, [show]);
+
+	return (
+		<>
+			{show && <ModalBackground onMouseDown={() => { dispatch(popModal()) }}>
+				{ModalList}
+			</ModalBackground>}
+		</>
+	);
+}
+
 const ModalBackground = styled.div`
 	position: fixed;
 	top: 0;
@@ -21,40 +54,4 @@ const ModalBackground = styled.div`
 	animation: ${animations.fadeIn} .2s;
 `;
 
-/*
-	:::: State Info ::::
-*/
-const Modal = ({element, dropModal})=> {
-	const Content = element;
-	const PreventModalOff = e => e.stopPropagation();
-	return (
-		<>
-			{!!element && <ModalBackground onMouseDown={dropModal}>
-				<Content PreventModalOff={PreventModalOff}
-								 ModalOff={dropModal}>
-				</Content>
-			</ModalBackground>}
-		</>
-	);
-}
-
-
-/*
-		:::: Store States ::::
-*/
-let mapStateToProps = (state) => {
-	return {
-		element: state.modal.get('element')
-	};
-}
-
-/*
-		:::: Reducer Actions ::::
-*/
-let mapDispatchToProps = (dispatch)=> {
-	return {
-		dropModal: ()=> dispatch(dropModal())
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (Modal)
+export default Modal

@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 // lib
-import palette from '../../../lib/styles/palette'
-import * as styles from '../../../lib/styles/styles'
-import animations from '../../../lib/styles/animations'
+import palette from 'lib/styles/palette'
+import * as styles from 'lib/styles/styles'
+import animations from 'lib/styles/animations'
 
-/*
-	:::: Styles ::::
-*/
+const Badge = ({title}) => {
+	const [eventOn, setEventOn] = useState(false);
+	const onClick = () => setEventOn(true);
+
+	useEffect(() => {
+		if (eventOn) {
+			const e = setTimeout(() => setEventOn(false), 2000);
+			return () => clearTimeout(e);
+		}
+	}, [eventOn]);
+
+	return <Content eventOn={eventOn} onClick={onClick}>{title}</Content>;
+}
+
 const Content = styled.div`
 	position: relative;
 	display: inline-block;
@@ -23,29 +34,12 @@ const Content = styled.div`
 	color: #fefefe;
 	cursor: pointer;
 	${styles.noselect}
-	${props => props.eventOn
-		? css` animation: 1s ${animations.pulse} infinite `
-		: ``
-	};
+	${props => props.eventOn && css`animation: 1s ${animations.pulse} infinite`};
 
 	&:hover {
 		background-color: ${palette.blue3};
 		border: 1.8px solid ${palette.blue3};
 	}
 `;
-
-const Badge = () => {
-	const [eventOn, setEventOn] = useState(false);
-	const onClick = () => setEventOn(true);
-
-	useEffect(() => {
-		if (eventOn) {
-			const e = setTimeout(() => setEventOn(false), 2000);
-			return () => clearTimeout(e);
-		}
-	}, [eventOn]);
-
-	return <Content eventOn={eventOn} onClick={onClick}>Simple</Content>;
-}
 
 export default Badge
