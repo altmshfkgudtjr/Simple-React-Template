@@ -1,10 +1,11 @@
-# Simple-React-Template [![GitHub license](https://camo.githubusercontent.com/890acbdcb87868b382af9a4b1fac507b9659d9bf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667)](https://github.com/altmshfkgudtjr/Simple-React-Template/blob/master/LICENSE) [![img](https://img.shields.io/github/v/release/altmshfkgudtjr/Simple-React-Template?color=%2312b886)](https://github.com/altmshfkgudtjr/Simple-React-Template/releases/tag/v1.0.3)
+# Simple-React-Template [![GitHub license](https://camo.githubusercontent.com/890acbdcb87868b382af9a4b1fac507b9659d9bf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542d626c75652e737667)](https://github.com/altmshfkgudtjr/Simple-React-Template/blob/master/LICENSE) [![img](https://img.shields.io/github/v/release/altmshfkgudtjr/Simple-React-Template?color=%2312b886)](https://github.com/altmshfkgudtjr/Simple-React-Template/releases/tag/v1.0.2)
 
   **This is React-based code that can be quickly generated.**
 
   빠르게 리액트 환경을 구축할 수 있는 템플릿입니다.
 
   - **CSS in JS** : styled-components를 사용하여 간편하게 컴포넌트 별로 스타일을 적용할 수 있습니다.
+
   - **Redux** : 상태관리를 효율적으로 하기 위해서 Store을 사용합니다. 또한 개발속도를 향상시키기 위해서, 각 Reducer들은 Ducks 구조로 작성되어 있습니다. (Ducks 구조 사용은 선택사항입니다.)
 
   - **Build**: `yarn build`를 통해서 작성한 코드들을 production mode로 빌드할 수 있습니다. 본 템플릿에서는 다음과 같은 과정을 빌드가 진행됩니다.
@@ -31,11 +32,16 @@
 
   
 
+
+
   ## Directory Structure
 
   ```shell
   Simple-React-Template
   │
+  │  .env
+  │  .gitingnore
+  │  jsconfig.json
   │  package-lock.json
   │  package.json
   │
@@ -64,7 +70,7 @@
       │
       ├─containers
       │  └─modal
-      │          index.js
+      │          Index.js
       │          info.js
       │
       ├─controllers
@@ -95,7 +101,7 @@
 
   - **Public** : 정적 자원를 저장하는 폴더입니다. 대표적으로 .html, .css, robots.txt 외에도 각종 Image 파일들이 존재합니다.
 
-  - [**package.json**](https://github.com/altmshfkgudtjr/Simple-React-Template/blob/master/package.json) : 해당 프로젝트의 이름과 버전 및 프로젝트 정보들을 수정 및 확인할 수 있습니다. 또한 `PostBuild`과정에서 배포 폴더 경로를 수정할 수 있습니다. (*아래 스크립트 참조) 
+  - [**package.json**](https://github.com/altmshfkgudtjr/Simple-React-Template/blob/master/package.json) : 해당 프로젝트의 이름과 버전 및 프로젝트 정보들을 수정 및 확인할 수 있습니다. 또한 `PostBuild`과정에서 배포 폴더 경로를 수정할 수 있습니다. (아래 스크립트 참조) 
 
     ```json
     "postbuild": "cp -r build/* ../backend/src/client"
@@ -106,6 +112,16 @@
     ```json
     "proxy": "http://localhost:5000"
     ```
+
+  - **jsconfig.json** : 해당 프로젝트에서의 컴파일러 옵션 등을 설정할 수 있습니다.
+    (현재 설정은 src를 기준으로 절대경로가 설정되었습니다. 아래 스크립트와 같이 사용할 수 있습니다.)
+
+    ```javascript
+    import Component from 'components/path/Component'
+    // src/components/path/Component
+    ```
+
+  - **.env**: 해당 프로젝트 실행에 필요한 환경변수는 해당 파일에서 추가 및 수정할 수 있습니다.
 
   - **components** : View를 담당하는 컴포넌트들을 저장하는 폴더입니다.
 
@@ -127,13 +143,13 @@
 
   # Details
 
-  개발 속도를 향상시키기 위해서 필수적이라 생각하는 기능 및 파일들이 존재합니다.
+개발 속도를 향상시키기 위해서 필수적이라 생각하는 기능 및 파일들이 존재합니다.
 
   
 
   ## App.js
 
-  이제는 잘 사용되지않는 Internet Explorer 브라우저일 경우에는 리다이렉트 페이지가 표시되도록 구현되어 있습니다. 만약 IE를 대상으로 구현하는 프로젝트일 경우 App.js 파일의 다음 코드를 지워주시길 바랍니다.
+이제는 잘 사용되지않는 Internet Explorer 브라우저일 경우에는 리다이렉트 페이지가 표시되도록 구현되어 있습니다. 만약 IE를 대상으로 구현하는 프로젝트일 경우 App.js 파일의 다음 코드를 지워주시길 바랍니다.
 
   ```javascript
   // Browsers not supported Redirect Page (IE)
@@ -152,36 +168,56 @@
 
   ## Default Modal file
 
-  기본적으로 모달이 작동하는 파일이 포함되어 있습니다. 본 모달은 Redux Store을 사용하여 작동합니다. 파일은 `containers/modal/info.js` 이며, 해당 모달을 부르고 싶은 컴포넌트에서 해당 파일을 import하여 사용하게 됩니다. 그 후, modal module에 존재하는 `showModal` 액션을 사용하여 모달을 작동시킵니다. 아래 예시를 참고하십시오.
+기본적으로 모달이 작동하는 파일이 포함되어 있습니다. 본 모달은 Redux Store을 사용하여 작동합니다. 
+(해당 방식의 사용은 선택사항입니다.)
+
+파일은 `containers/modal/Info.js` 이며, 해당 모달을 부르고 싶은 컴포넌트에서 해당 파일을 import하여 사용하게 됩니다. 그 후, modal module에 존재하는 `pushModal` 액션을 사용하여 모달을 작동시킵니다. 각 모달은 **고유의 id값**을 넣어서 호출해야 합니다. 만약 id값이 undefined라면 해당 모달은 정상적으로 작동하지 않을 것입니다.  아래는 리듀서에 작성된 액션입니다.
+
+```javascript
+export const pushModal = (id, elem, args) => ({ type: PUSH_MODAL, payload: {id, elem, args} });
+export const popModal = () => ({ type: POP_MODAL });
+export const deleteModal = (id) => ({ type: DELETE_MODAL, payload: id });
+export const clearModal = () => ({ type: CLEAR_MODAL });
+```
+
+- **pushModal** : 모달을 등록하는 함수입니다. 해당 액션을 통해서 여러개의 모달을 스택처럼 등록시킬 수 있으며, 순서를 유지한채로 화면에 표시됩니다.
+- **popModal** : 등록된 모달에서 가장 나중에 등록된 모달부터 스택처럼 제거할 수 있습니다.
+
+- **deleteModal** : 모달별로 고유의 id값을 이용하여 특정 모달만 제거할 수 있습니다.
+- **clearModal** : 현재 등록된 모든 모달을 제거할 수 있습니다.
+
+모달을 호출하는 방식은 아래 예시를 참고하십시오.
 
   ```jsx
-  import React from 'react'
-  import { connect } from 'react-redux'
-  import InfoModal from '../../containers/modal/info'
-  import { showModal } from '../../modules/modal'
-  
-  const Btn = ({ showModal }) => {
-  	const modalOn = () => showModal(InfoModal);
-      
-  	return <button onClick={modalOn}>모달 보기</button>
-  }
-  
-  let mapDispatchToProps = (dispatch) => {
-  	return {
-  		showModal: (elem)=> dispatch(showModal(elem))
-  	};
-  }
-  
-  export default connect(undefined, mapDispatchToProps) (Btn)
+/* This file is Sample Component to call a modal. */
+
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import Button from 'components/path/Button'
+import InfoModal from 'containers/modal/Info'
+import { pushModal } from 'modules/modal'
+
+const Btn = () => {
+	const dispatch = useDispatch();
+
+	const modalOn = () => {
+		dispatch(pushModal('INFO', InfoModal, {title: "Simple"}));
+	};
+
+	return <Button onClick={modalOn}>Simple</Button>
+}
+
+export default Btn
   ```
 
-  해당 모달 파일에서는 `PreventModalOff`와 `ModalOff` 인자가 기본적으로 제공됩니다. `PreventModalOff` 함수는 `onMouseDown` 속성으로 모달 최상위 속성에 등록해주시길 바랍니다. `ModalOff`는 선택적 사항입니다. 기본적으로 Background에 MouseDown 이벤트로 모달이 닫히도록 작동됩니다. 이 외에 버튼을 통해서 모달을 닫는 경우, 해당 함수를 사용해주시길 바랍니다.
+해당 모달 파일에서는 `PreventModalOff` 와 `ModalOff` 및 `args` 인자가 기본적으로 제공됩니다. `PreventModalOff` 함수는 `onMouseDown` 속성으로 모달 최상위 속성에 등록해주시길 바랍니다. `ModalOff`는 선택적 사항입니다. `args`는 모달을 호출하는 컴포넌트에서 모달에게 매개변수를 전달할 수 있습ㄴ시다. 기본적으로 Background에 MouseDown 이벤트로 모달이 닫히도록 작동됩니다. 이 외에 버튼을 통해서 모달을 닫는 경우, 해당 함수를 사용해주시길 바랍니다.
 
-  
+
 
   ## Default Fetch file
 
-  기본적으로 비동기 통신을 위해서 [fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)가 사용됩니다. 해당 파일에서는 API를 쉽게 사용할 수 있도록 작성되었습니다. (파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.) 
+기본적으로 비동기 통신을 위해서 [fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)가 사용됩니다. 해당 파일에서는 API를 쉽게 사용할 수 있도록 작성되었습니다. 
+(파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.) 
 
   ```javascript
   const Fetch = (url, method, sendData, callback, failed) => { ... };
@@ -194,9 +230,9 @@
      `POST`, `GET`,  `DELETE`, `PUT`, `PATCH` 등이 존재합니다.
   - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. 본 파일에는 FormData를 사용한 파일 전송은 구현되어있지 않습니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
-  - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 마찬가지로 선택사항입니다.
+  - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 선택사항입니다.
 
-  해당 모듈은 **Promise** 객체를 반환합니다. 아래와 같이 사용 가능합니다.
+해당 모듈은 **Promise** 객체를 반환합니다. 아래와 같이 사용 가능합니다.
 
 ```javascript
 import Fetch from './fetch'
@@ -209,23 +245,31 @@ Promise.all([
 
 // or
 
-Fetch('/api/first', 'POST', {'key': 'value'}, (data) => {
-  console.log(data);		// success
-}, () => {
-  console.log("Failed");	// failed
-}).then((res) => {
-  console.log(res);			// response
+Fetch('/api/first', 'GET')
+.then((data) => {
+   console.log(data); 
+})
+.catch((err) => {
+    console.log(err);
+});
+
+// or
+
+Fetch('/api/first', 'POST', {'key': 'value'}, 
+(data) => {
+  console.log(data);
+},
+(err) => {
+  console.log(err);
 });
 ```
 
 
 
-  
 
-  
 
   # Feedback & Issue
 
-  [피드백 및 이슈 제기](https://github.com/altmshfkgudtjr/Simple-React-Template/issues) 는 언제나 환영입니다. 필요한 기능이거나 불필요한 기능이라고 생각된다면, 언제든지 Issue로 남겨주시길 바랍니다!
+[피드백 및 이슈 제기](https://github.com/altmshfkgudtjr/Simple-React-Template/issues) 는 언제나 환영입니다. 필요한 기능이거나 불필요한 기능이라고 생각된다면, 언제든지 Issue로 남겨주시길 바랍니다!
 
   + 현재 Typescript 환경은 적용되어 있지 않습니다. 추후 추가 예정입니다.

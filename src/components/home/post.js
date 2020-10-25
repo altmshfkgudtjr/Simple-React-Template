@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 // lib
-import { transition } from '../../lib/styles/styles'
-import palette from '../../lib/styles/palette'
+import { transition } from 'lib/styles/styles'
+import palette from 'lib/styles/palette'
 
-/*
-	:::: Styles ::::
-*/
+const Post = ({children}) => {
+	return <Content>{children}</Content>;
+}
+
 const Content = styled.div`
 	position: relative;
 	width: 90%;
@@ -23,13 +24,5 @@ const Content = styled.div`
 	}
 	& > a:hover { color: ${palette.teal1}; }
 `;
-
-/*
-	:::: Store States ::::
-	children: <Components> React children components
-*/
-const Post = ({children}) => {
-	return <Content>{children}</Content>;
-}
 
 export default Post

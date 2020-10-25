@@ -1,9 +1,9 @@
 import React from 'react'
 // components
-import Section from '../components/home/section'
-import Title from '../components/home/title'
-import Post from '../components/home/post'
-import Btn from '../components/home/btn'
+import Section from 'components/home/Section'
+import Title from 'components/home/Title'
+import Post from 'components/home/Post'
+import Btn from 'components/home/Btn'
 
 const HomePage = () => {
 	return (

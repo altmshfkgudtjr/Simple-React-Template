@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk';
 // Reducers
-import modal from '../modules/modal'
+import modal from 'modules/modal'
 
 /* 
 	Combine Reducers

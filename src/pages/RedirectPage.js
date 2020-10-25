@@ -1,11 +1,28 @@
 import React from 'react';
 import styled from 'styled-components'
 // lib
-import { transition, noselect } from '../lib/styles/styles'
+import { transition, noselect } from 'lib/styles/styles'
 
-/*
-	:::: Styles ::::
-*/
+const RedirectPage = ()=> {
+	return (
+		<Container>
+			<Title>This browser is not supported.</Title>
+			<Info>Try using the browser below!</Info>
+			<BtnWrapper>
+				<a href="https://www.google.com/chrome">
+					<Btn src="/icons/browsers/chrome.png" alt="Chrome" />
+				</a>
+				<a href="https://www.microsoft.com/ko-kr/edge">
+					<Btn src="/icons/browsers/edge.png" alt="Edge" />
+				</a>
+				<a href="https://whale.naver.com/ko/download">
+					<Btn src="/icons/browsers/whale.png" alt="Whale" />
+				</a>
+			</BtnWrapper>
+		</Container>
+	);
+}
+
 const Container = styled.div`
 	position: relative;
 	top: 0;
@@ -66,25 +83,5 @@ const Btn = styled.img`
 		top: -10px;
 	}
 `;
-
-const RedirectPage = ()=> {
-	return (
-	  <Container>
-	  	<Title>This browser is not supported.</Title>
-	  	<Info>Try using the browser below!</Info>
-	  	<BtnWrapper>
-	  	  <a href="https://www.google.com/chrome">
-	  	  	<Btn src="/icons/browsers/chrome.png" alt="Chrome" />
-	  	  </a>
-	  	  <a href="https://www.microsoft.com/ko-kr/edge">
-	  	    <Btn src="/icons/browsers/edge.png" alt="Edge" />
-	  	  </a>
-	  	  <a href="https://whale.naver.com/ko/download">
-	  	    <Btn src="/icons/browsers/whale.png" alt="Whale" />
-	  	  </a>
-	  	</BtnWrapper>
-	  </Container>
-	);
-}
 
 export default RedirectPage

@@ -2,8 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 // lib
-import { transition, noselect } from '../lib/styles/styles'
-import palette from '../lib/styles/palette'
+import { transition, noselect } from 'lib/styles/styles'
+import palette from 'lib/styles/palette'
+
+function NoPage() {
+	return (
+		<>
+			<Title>404 Not Found.</Title>
+			<Link to="/">
+				<Btn>Back</Btn>
+			</Link>
+		</>
+	);
+}
 
 const Title = styled.div`
 	position: relative;
@@ -36,16 +47,5 @@ const Btn = styled.button`
 		color: white;
 	}
 `;
-
-function NoPage() {
-	return (
-	  <>
-	    <Title>404 Not Found.</Title>
-	    <Link to="/">
-	      <Btn>Back</Btn>
-	    </Link>
-	  </>
-	);
-}
 
 export default NoPage
