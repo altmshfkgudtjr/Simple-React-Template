@@ -113,7 +113,7 @@
     "proxy": "http://localhost:5000"
     ```
 
-  - **jsconfig.json** : 해당 프로젝트에서의 컴파일러 옵션 등을 설정할 수 있습니다.
+  - [**jsconfig.json**](https://github.com/altmshfkgudtjr/Simple-React-Template/blob/master/jsconfig.json) : 해당 프로젝트에서의 컴파일러 옵션 등을 설정할 수 있습니다.
     (현재 설정은 src를 기준으로 절대경로가 설정되었습니다. 아래 스크립트와 같이 사용할 수 있습니다.)
 
     ```javascript
@@ -121,7 +121,7 @@
     // src/components/path/Component
     ```
 
-  - **.env**: 해당 프로젝트 실행에 필요한 환경변수는 해당 파일에서 추가 및 수정할 수 있습니다.
+  - **.env**: 해당 프로젝트 실행에 필요한 환경변수는 해당 파일에서 추가 및 수정할 수 있습니다. (기본값으로, HOST=0.0.0.0가 작성되어 있어야 합니다.)
 
   - **components** : View를 담당하는 컴포넌트들을 저장하는 폴더입니다.
 
