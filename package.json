@@ -46,7 +46,6 @@
 		"@testing-library/react": "^11.1.0",
 		"@testing-library/user-event": "^12.1.10",
 		"prop-types": "^15.7.2",
-		"react-immutable-proptypes": "^2.2.0",
 		"redux-mock-store": "^1.5.4"
 	},
 	"license": "MIT",

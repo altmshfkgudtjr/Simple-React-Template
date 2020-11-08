@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from "react-helmet-async"
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 // lib
@@ -6,14 +7,16 @@ import { transition, noselect } from 'lib/styles/styles'
 import palette from 'lib/styles/palette'
 
 function NoPage() {
-	return (
-		<>
-			<Title>404 Not Found.</Title>
-			<Link to="/">
-				<Btn>Back</Btn>
-			</Link>
-		</>
-	);
+	return (<>
+		<Helmet>
+			<title>APP-NAME - 404</title>
+		</Helmet>
+
+		<Title>404 Not Found.</Title>
+		<Link to="/">
+			<Btn>Back</Btn>
+		</Link>
+	</>);
 }
 
 const Title = styled.div`
