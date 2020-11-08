@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { transition, noselect } from 'lib/styles/styles'
 
 const RedirectPage = ()=> {
+	/* If you want to redirect to Microsoft-Edge, uncomment the code below */
+	// window.location.href = "microsoft-edge:http:App-Domain.com";
+
 	return (
 		<Container>
 			<Title>This browser is not supported.</Title>
