@@ -43,6 +43,7 @@
   │  .gitingnore
   │  jsconfig.json
   │  package-lock.json
+  │  yarn.lock
   │  package.json
   │
   ├─public
@@ -67,11 +68,15 @@
       │  │
       │  └─modal
       │      └─info
+      │  └─common
+      │          Snackbar.js
       │
       ├─containers
       │  └─modal
       │          Index.js
       │          info.js
+      │  └─common
+      │          Snackbar.js
       │
       ├─controllers
       │      fetch.js
@@ -83,17 +88,19 @@
       │          palette.js
       │          styles.js
       │          zIndex.js
+      │  └─utils
       │
       ├─modules
       │  │  modal.js
+      │  │  snackbar.js
       │  │
       │  └─__test__
       │          modal.test.js
+      │          snackbar.test.js
       │
       ├─pages
       │      HomePage.js
       │      NotFound.js
-      │      RedirectPage.js
       │
       └─store
               index.js
@@ -129,7 +136,10 @@
 
   - **controllers** : API들을 저장하는 폴더입니다.
 
-  - **lib** : 프로젝트에 필요한 추가 모듈들을 저장하는 폴더입니다. 이 폴더 내에는 style과 관련한 파일들이 존재합니다.
+  - **lib** : 프로젝트에 필요한 추가 모듈들을 저장하는 폴더입니다.
+
+      - **styles** : Component에서 사용하는 공통 style에 대해서 모아둔 폴더입니다.
+      - **utils** : Component에서 사용하는 공통 로직에 대해서 모아둔 폴더입니다.
 
   - **modules** : Reducer들을 저장하는 폴더입니다.
 
@@ -145,33 +155,34 @@
 
 개발 속도를 향상시키기 위해서 필수적이라 생각하는 기능 및 파일들이 존재합니다.
 
-  
+ 
 
-  ## App.js
+  ## IE Redirect
 
-이제는 잘 사용되지않는 Internet Explorer 브라우저일 경우에는 리다이렉트 페이지가 표시되도록 구현되어 있습니다. 만약 IE를 대상으로 구현하는 프로젝트일 경우 App.js 파일의 다음 코드를 지워주시길 바랍니다.
+이제는 잘 사용되지않는 Internet Explorer 브라우저일 경우에는 리다이렉트 페이지가 표시되도록 구현되어 있습니다. 만약 IE를 대상으로 구현하는 프로젝트일 경우 index.html 파일의 다음 코드를 지워주시길 바랍니다.
 
-  ```javascript
-  // Browsers not supported Redirect Page (IE)
-  // In development mode, you cannot view the output in the IE browser.
-  // But, Don't worry.In production mode, this code works fine.
-  const agent = navigator.userAgent.toLowerCase();
-  let isRedirect = false;
-  if ((navigator.appName === 'Netscape' && agent.indexOf('trident') !== -1) || (agent.indexOf("msie") !== -1)) { 
-      isRedirect = true; 
-  } else {
-      isRedirect = false;
-  }
+  ```html
+// index.html
+
+<script>
+	// Browsers not supported Redirect Page (IE)
+	const agent = navigator.userAgent.toLowerCase();
+	if ((navigator.appName === 'Netscape' && agent.indexOf('trident') !== -1) || (agent.indexOf("msie") !== -1)) {
+		window.location = "microsoft-edge://" + window.location.href;
+	}
+</script>
   ```
 
   
 
-  ## Default Modal file
+  
+
+  ## Default Modal
 
 기본적으로 모달이 작동하는 파일이 포함되어 있습니다. 본 모달은 Redux Store을 사용하여 작동합니다. 
 (해당 방식의 사용은 선택사항입니다.)
 
-파일은 `containers/modal/Info.js` 이며, 해당 모달을 부르고 싶은 컴포넌트에서 해당 파일을 import하여 사용하게 됩니다. 그 후, modal module에 존재하는 `pushModal` 액션을 사용하여 모달을 작동시킵니다. 각 모달은 **고유의 id값**을 넣어서 호출해야 합니다. 만약 id값이 undefined라면 해당 모달은 정상적으로 작동하지 않을 것입니다.  아래는 리듀서에 작성된 액션입니다.
+파일은 `containers/modal/info.js` 이며, 해당 모달을 부르고 싶은 컴포넌트에서 해당 파일을 import하여 사용하게 됩니다. 그 후, modal module에 존재하는 `pushModal` 액션을 사용하여 모달을 작동시킵니다. 각 모달은 **고유의 id값**을 넣어서 호출해야 합니다. 만약 id값이 undefined라면 해당 모달은 정상적으로 작동하지 않을 것입니다.  아래는 리듀서에 작성된 액션입니다.
 
 ```javascript
 export const pushModal = (id, elem, args) => ({ type: PUSH_MODAL, payload: {id, elem, args} });
@@ -212,12 +223,53 @@ export default Btn
 
 해당 모달 파일에서는 `PreventModalOff` 와 `ModalOff` 및 `args` 인자가 기본적으로 제공됩니다. `PreventModalOff` 함수는 `onMouseDown` 속성으로 모달 최상위 속성에 등록해주시길 바랍니다. `ModalOff`는 선택적 사항입니다. `args`는 모달을 호출하는 컴포넌트에서 모달에게 매개변수를 전달할 수 있습ㄴ시다. 기본적으로 Background에 MouseDown 이벤트로 모달이 닫히도록 작동됩니다. 이 외에 버튼을 통해서 모달을 닫는 경우, 해당 함수를 사용해주시길 바랍니다.
 
+  
 
+   
+
+## Default Snackbar
+
+기본적으로 사용자에게 보다 나은 Alert 표시를 위해서 Snackbar 구조가 포함되어 있습니다. 본 스낵바는 Redux Store을 사용하여 작동합니다. 
+(해당 방식의 사용은 선택사항입니다.)
+
+기본적으로 스낵바 타입은 다음과 같습니다.
+
+- **success** : Green Color
+- **warning** : Red Color
+- **error** : Orange Color
+- **info** : Gray Color
+
+스낵바를 호출하는 방식은 아래 예시를 참고하십시오.
+
+```javascript
+/* This file is Sample Component to call a snackbar. */
+
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import Button from 'components/path/Button'
+import { newSnackbar } from 'modules/snackbar'
+
+const Btn = () => {
+	const dispatch = useDispatch();
+
+	const callSnackbar = () => {
+		dispatch(newSnackbar('테스트 문구', 'info'));
+	};
+
+	return <Button onClick={callSnackbar}>Snackbar</Button>
+}
+
+export default Btn
+```
+
+   
+
+  
 
   ## Default Fetch file
 
 기본적으로 비동기 통신을 위해서 [fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)가 사용됩니다. 해당 파일에서는 API를 쉽게 사용할 수 있도록 작성되었습니다. 
-(파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.) 
+(본 파일 사용유무는 선택사항입니다. 사용하지 않으면 지워주시길 바랍니다.) 
 
   ```javascript
   const Fetch = (url, method, sendData, callback, failed) => { ... };
@@ -228,9 +280,15 @@ export default Btn
   - **url**< string > : Target url입니다. 예시) `/board/1/post/3`
   - **method**< string > : HTTP 요청 메서드를 인자로 받습니다. 통신 메소드명은 대문자, 소문자 상관없습니다.
      `POST`, `GET`,  `DELETE`, `PUT`, `PATCH` 등이 존재합니다.
-  - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. 본 파일에는 FormData를 사용한 파일 전송은 구현되어있지 않습니다.
+  - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. FormData 타입도 지원합니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
   - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 선택사항입니다.
+
+
+
+**headers**값의 Accept 속성에  'application/json' 을 적용하여, Backend로부터 송신되는 API별 에러 메세지를 확인할 수 있도록 하였습니다.
+
+
 
 해당 모듈은 **Promise** 객체를 반환합니다. 아래와 같이 사용 가능합니다.
 

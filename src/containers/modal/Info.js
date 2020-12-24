@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 // components
 import Title from 'components/modal/info/Title'
@@ -8,6 +9,8 @@ import CloseBtn from 'components/modal/info/CloseBtn'
 import media from 'lib/styles/media'
 import * as styles from 'lib/styles/styles'
 import animations from 'lib/styles/animations'
+// modules
+import { newSnackbar } from 'modules/snackbar'
 
 /*
 	PreventModalOff: <function> Default function, Don't remove.
@@ -15,11 +18,14 @@ import animations from 'lib/styles/animations'
 	args: <Dictionary> Arguments
 */
 const InfoModal = ({ PreventModalOff, ModalOff, args }) => {
+	const dispatch = useDispatch();
+	const onClickBadge = () => dispatch(newSnackbar('Simple is best.'));
+
 	return (
 	  <Container onMouseDown={PreventModalOff}>
 	  	<TitleWrapper>
 	  		<Title>
-	  			<Badge title={args['title']} /> means
+	  			<Badge onClick={onClickBadge} title={args['title']} /> means
 	  		</Title>
 	  		<h1>Development</h1>
 	  		<Title>should be simple.</Title>
