@@ -1,29 +1,37 @@
 const Fetch = (url, method, sendData, callback, failed) => {
-	/* Auto Authroization */
-	const token = localStorage.getItem('tk');
-  let authorization;
-  if (token === null || token === undefined || token === 'undefined') {
-      authorization = {};
-  } else {
-      authorization = {'Authorization': "Bearer " + token};
-  }
+	/* JWT Auto Authroization using WebStorage */
+	const token = localStorage.getItem('tk'); // or sessionStorage
+	let authorization;
+	if (token === null || token === undefined || token === 'undefined') {
+			authorization = {};
+	} else {
+			authorization = {'Authorization': "Bearer " + token};
+	}
 
-   /* init request form */
-  let request = null;
-  if (method === 'GET') {
-  	request = {
-  		method: 'GET',
-  		headers: authorization
-  	};
-  } else {
-  	request = {
-  		method: method,
-  		headers: Object.assign(authorization, {
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify(sendData)
-  	}
-  }
+	/* init request form */
+	const isFormData = sendData.constructor.toString().slice(9).startsWith('FormData')
+		? true
+		: false ;
+	let request = null;
+	if (method === 'GET') {
+		request = {
+			method: 'GET',
+			headers: authorization
+		};
+	} else {
+		request = {
+			method: method,
+			headers: isFormData
+				? {} 
+				: Object.assign(authorization, {
+						'Content-Type': 'application/json',
+						'Accept': 'application/json'
+					}),
+			body: isFormData
+				? sendData
+				: JSON.stringify(sendData)
+		}
+	}
 
 	return fetch(url, request)
 	.then(res => {

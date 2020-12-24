@@ -5,9 +5,12 @@ import palette from 'lib/styles/palette'
 import * as styles from 'lib/styles/styles'
 import animations from 'lib/styles/animations'
 
-const Badge = ({title}) => {
+const Badge = ({ onClick, title }) => {
 	const [eventOn, setEventOn] = useState(false);
-	const onClick = () => setEventOn(true);
+	const onClickBadge = () => {
+		onClick();
+		setEventOn(true);
+	};
 
 	useEffect(() => {
 		if (eventOn) {
@@ -16,7 +19,7 @@ const Badge = ({title}) => {
 		}
 	}, [eventOn]);
 
-	return <Content eventOn={eventOn} onClick={onClick}>{title}</Content>;
+	return <Content eventOn={eventOn} onClick={onClickBadge}>{title}</Content>;
 }
 
 const Content = styled.div`
