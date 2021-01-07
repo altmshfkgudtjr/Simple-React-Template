@@ -8,6 +8,8 @@
 
   - **Redux** : 상태관리를 효율적으로 하기 위해서 Store을 사용합니다. 또한 개발속도를 향상시키기 위해서, 각 Reducer들은 Ducks 구조로 작성되어 있습니다. (Ducks 구조 사용은 선택사항입니다.)
 
+  - **Redux-thunk** : 미들웨어로 redux-thunk를 적용하였습니다.
+
   - **Build**: `yarn build`를 통해서 작성한 코드들을 production mode로 빌드할 수 있습니다. 본 템플릿에서는 다음과 같은 과정을 빌드가 진행됩니다.
 
     - **Pre Build** : 작성한 모든 test파일들을 진행합니다. 이 때, 통과하지 못한 파일이 존재하면 빌드과정이 진행되지 않습니다.
@@ -221,7 +223,7 @@ const Btn = () => {
 export default Btn
   ```
 
-해당 모달 파일에서는 `PreventModalOff` 와 `ModalOff` 및 `args` 인자가 기본적으로 제공됩니다. `PreventModalOff` 함수는 `onMouseDown` 속성으로 모달 최상위 속성에 등록해주시길 바랍니다. `ModalOff`는 선택적 사항입니다. `args`는 모달을 호출하는 컴포넌트에서 모달에게 매개변수를 전달할 수 있습ㄴ시다. 기본적으로 Background에 MouseDown 이벤트로 모달이 닫히도록 작동됩니다. 이 외에 버튼을 통해서 모달을 닫는 경우, 해당 함수를 사용해주시길 바랍니다.
+해당 모달 파일에서는 `PreventModalOff` 와 `ModalOff` 및 `args` 인자가 기본적으로 제공됩니다. `PreventModalOff` 함수는 `onMouseDown` 속성으로 모달 최상위 속성에 등록해주시길 바랍니다. `ModalOff`는 선택적 사항입니다. `args`는 모달을 호출하는 컴포넌트에서 모달에게 매개변수를 전달할 수 있습니다. 기본적으로 Background에 MouseDown 이벤트로 모달이 닫히도록 작동됩니다. 이 외에 버튼을 통해서 모달을 닫는 경우, 해당 함수를 사용해주시길 바랍니다.
 
   
 
@@ -328,6 +330,4 @@ Fetch('/api/first', 'POST', {'key': 'value'},
 
   # Feedback & Issue
 
-[피드백 및 이슈 제기](https://github.com/altmshfkgudtjr/Simple-React-Template/issues) 는 언제나 환영입니다. 필요한 기능이거나 불필요한 기능이라고 생각된다면, 언제든지 Issue로 남겨주시길 바랍니다!
-
-  + 현재 Typescript 환경은 적용되어 있지 않습니다. 추후 추가 예정입니다.
+[피드백 및 이슈 제기](https://github.com/altmshfkgudtjr/Simple-React-Template/issues) 는 언제나 환영입니다. 필요한 기능이거나 불필요한 기능이라고 생각된다면, 언제든지 Issue로 남겨주시길 바랍니다.
