@@ -74,6 +74,7 @@
       │          Snackbar.js
       │
       ├─containers
+      │      Home.js
       │  └─modal
       │          Index.js
       │          info.js
@@ -93,6 +94,7 @@
       │  └─utils
       │
       ├─modules
+      │  │  index.js
       │  │  modal.js
       │  │  snackbar.js
       │  │
@@ -100,12 +102,9 @@
       │          modal.test.js
       │          snackbar.test.js
       │
-      ├─pages
-      │      HomePage.js
-      │      NotFound.js
-      │
-      └─store
-              index.js
+      └─pages
+             HomePage.js
+             NotFound.js
   ```
 
   - **Public** : 정적 자원를 저장하는 폴더입니다. 대표적으로 .html, .css, robots.txt 외에도 각종 Image 파일들이 존재합니다.
