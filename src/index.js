@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { HelmetProvider } from "react-helmet-async"
 // Store
-import store from 'store/index'
+import store from 'modules'
 
 ReactDOM.render(
   <React.StrictMode>

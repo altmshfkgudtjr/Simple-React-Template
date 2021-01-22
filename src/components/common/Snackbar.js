@@ -79,7 +79,7 @@ const Message = styled.div`
 	flex-grow: 1;
 	color: white;
 	font-size: 14px;
-	font-weight: 200;
+	font-weight: 400;
 	white-space: pre-wrap;
 	word-break: keep-all;
 	vertical-align: top;
