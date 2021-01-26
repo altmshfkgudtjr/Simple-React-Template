@@ -52,10 +52,7 @@ const Fetch = (url, method, sendData, callback, failed) => {
 					res: res
 				});
 			default:
-				return Promise.reject({
-					status: res.status,
-					res: res
-				});
+				break
 		}
 
 		return res;
