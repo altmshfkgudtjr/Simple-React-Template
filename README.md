@@ -279,9 +279,8 @@ export default Btn
   기본적으로 해당 모듈은 다음과 같은 인자를 필요로 합니다.
 
   - **url**< string > : Target url입니다. 예시) `/board/1/post/3`
-  - **method**< string > : HTTP 요청 메서드를 인자로 받습니다. 통신 메소드명은 대문자, 소문자 상관없습니다.
-     `POST`, `GET`,  `DELETE`, `PUT`, `PATCH` 등이 존재합니다.
-  - **sendData**< Object: dictionary > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. FormData 타입도 지원합니다.
+  - **method**< string > : 기본적으로 API는 REST API 메소드를 준수하여 타입을 지정하였습니다. 만약 다른 메소드를 사용할 경우, 해당 타입을 수정할 수 있습니다. `POST`, `GET`, `DELETE`, `PUT`, `PATCH` 등이 존재합니다.
+  - **sendData**< object > : HTTP 요청을 할 때, 필요한 data입니다. 기본적으로 json/application으로 보내지며, sendData는 JSON화 되어서 통신이 진행됩니다. FormData 타입도 지원합니다.
   - **callback**< function > : 통신이 완료된 후에 실행될 콜백함수입니다. 선택사항입니다.
   - **failed**< function > : 4xx 또는 5xx 에러(대표적으로 404, 502)가 발생할 경우, 실행될 함수입니다. 선택사항입니다.
 
