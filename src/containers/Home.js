@@ -1,4 +1,3 @@
-import React from 'react'
 // components
 import Section from 'components/home/Section'
 import Title from 'components/home/Title'
