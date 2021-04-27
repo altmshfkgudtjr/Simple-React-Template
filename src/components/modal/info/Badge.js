@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 // lib
 import palette from 'lib/styles/palette'
