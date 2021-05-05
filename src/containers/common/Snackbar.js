@@ -6,21 +6,25 @@ import Snackbar from 'components/common/Snackbar'
 import zIndex from 'lib/styles/zIndex'
 import media from 'lib/styles/media'
 // module
-import { deleteSnackbar } from 'modules/snackbar'
+import { deleteSnackbar } from 'slices/snackbar'
+
 
 const SnackbarWrapper = ()=> {
 	const dispatch = useDispatch();
-	const show = useSelector(state => state.snackbar.show);
-	const text = useSelector(state => state.snackbar.text);
 	const type = useSelector(state => state.snackbar.type);
+	const message = useSelector(state => state.snackbar.message);
 
-	const onClick = () => {
-		dispatch(deleteSnackbar());
-	}
+	
+	const onClick = () => dispatch(deleteSnackbar());
+
 
 	return (
 		<Container>
-			{show && <Snackbar onClick={onClick} text={text} type={type}></Snackbar>}
+			{message && <Snackbar 
+				onClick={onClick} 
+				type={type} 
+				message={message} 
+			/>}
 		</Container>
 	);
 }

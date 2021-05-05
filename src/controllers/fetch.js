@@ -1,40 +1,43 @@
+/**
+ * Default Request Method
+ * @param {string} url Target API url
+ * @param {string} method Target API method (e.g. 'POST', 'GET', 'DELETE', etc..)
+ * @param {any} sendData To send body data
+ * @param {Function} callback Callback run after request successed
+ * @param {Function} failed Callback run after request failed
+ * @returns {Promise} Promise object
+ */
 const Fetch = (url, method, sendData, callback, failed) => {
+	const headers = {};
 
-	/* JWT Auto Authroization using WebStorage */
-	/* If you do not use the webStorage method and use the cookie method, please modify this part. */
-	const token = localStorage.getItem('tk'); // or sessionStorage
-	let authorization;
-
-	if (token === null || token === undefined || token === 'undefined') {
-		authorization = {};
-	} else {
-		authorization = { 'Authorization': "Bearer " + token };
-	}
+	/*
+		write here custom header properties.
+	*/
 
 	/* init request form */
 	const isFormData = !!sendData && checkFormData(sendData)
 		? true
 		: false;
-	let request = null;
+	const request = {};
 
 	if (method === 'GET') {
-		request = {
+		Object.assign(request, {
 			method: 'GET',
-			headers: authorization
-		};
+			headers
+		});
 	} else {
-		request = {
-			method: method,
+		Object.assing(request, {
+			method,
 			headers: isFormData
-				? {}
-				: Object.assign(authorization, {
+				? headers
+				: Object.assign(headers, {
 					'Content-Type': 'application/json',
 					'Accept': 'application/json'
 				}),
 			body: isFormData
 				? sendData
 				: JSON.stringify(sendData)
-		}
+		});
 	}
 
 	return fetch(url, request)

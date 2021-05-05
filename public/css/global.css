@@ -2,69 +2,70 @@
 @font-face {
 	font-family: 'SpoqaHanSans';
 	src: local('※'), 
-		 url('/fonts/spoqa/Spoqa Han Sans Bold.woff2') fromat('woff2'),
+		 url('/fonts/spoqa/Spoqa Han Sans Bold.woff2') format('woff2'),
 		 url('/fonts/spoqa/Spoqa Han Sans Bold.woff') format('woff');
 	font-weight: 800;
 }
 @font-face {
 	font-family: 'SpoqaHanSans';
 	src: local('※'), 
-		 url('/fonts/spoqa/Spoqa Han Sans Regular.woff2') fromat('woff2'),
+		 url('/fonts/spoqa/Spoqa Han Sans Regular.woff2') format('woff2'),
 		 url('/fonts/spoqa/Spoqa Han Sans Regular.woff') format('woff');
 	font-weight: 600;
 }
 @font-face {
 	font-family: 'SpoqaHanSans';
 	src: local('※'), 
-		 url('/fonts/spoqa/Spoqa Han Sans Thin.woff2') fromat('woff2'),
+		 url('/fonts/spoqa/Spoqa Han Sans Thin.woff2') format('woff2'),
 		 url('/fonts/spoqa/Spoqa Han Sans Thin.woff') format('woff');
 	font-weight: 400;
 }
 @font-face {
 	font-family: 'SpoqaHanSans';
 	src: local('※'), 
-		 url('/fonts/spoqa/Spoqa Han Sans Light.woff2') fromat('woff2'),
+		 url('/fonts/spoqa/Spoqa Han Sans Light.woff2') format('woff2'),
 		 url('/fonts/spoqa/Spoqa Han Sans Light.woff') format('woff');
 	font-weight: 200;
 }
+
 /* AppleSDGothicNeo Font */
 @font-face {
 	font-family: 'AppleSDGothicNeo';
 	src: local('※'), 
 		 url('/fonts/AppleSDGothicNeo/woff/AppleSDGothicNeoH.woff') format('woff'),
-		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoH.woff2') fromat('woff2'),
-		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoH.woff2') fromat('ttf');
+		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoH.woff2') format('woff2'),
+		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoH.woff2') format('ttf');
 	font-weight: 800;
 }
 @font-face {
 	font-family: 'AppleSDGothicNeo';
 	src: local('※'), 
 		 url('/fonts/AppleSDGothicNeo/woff/AppleSDGothicNeoB.woff') format('woff'),
-		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoB.woff2') fromat('woff2'),
-		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoB.woff2') fromat('ttf');
+		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoB.woff2') format('woff2'),
+		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoB.woff2') format('ttf');
 	font-weight: 600;
 }
 @font-face {
 	font-family: 'AppleSDGothicNeo';
 	src: local('※'), 
 		 url('/fonts/AppleSDGothicNeo/woff/AppleSDGothicNeoM.woff') format('woff'),
-		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoM.woff2') fromat('woff2'),
-		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoM.woff2') fromat('ttf');
+		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoM.woff2') format('woff2'),
+		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoM.woff2') format('ttf');
 	font-weight: 500;
 }
 @font-face {
 	font-family: 'AppleSDGothicNeo';
 	src: url('/fonts/AppleSDGothicNeo/woff/AppleSDGothicNeoR.woff') format('woff'),
-		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoR.woff2') fromat('woff2'),
-		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoR.woff2') fromat('ttf');
+		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoR.woff2') format('woff2'),
+		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoR.woff2') format('ttf');
 	font-weight: 400;
 }
 @font-face {
 	font-family: 'AppleSDGothicNeo';
 	src: local('※'), 
 		 url('/fonts/AppleSDGothicNeo/woff/AppleSDGothicNeoUL.woff') format('woff'),
-		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoUL.woff2') fromat('woff2'),
-		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoUL.woff2') fromat('ttf');
+		 url('/fonts/AppleSDGothicNeo/woff2/AppleSDGothicNeoUL.woff2') format('woff2'),
+		 url('/fonts/AppleSDGothicNeo/ttf/AppleSDGothicNeoUL.woff2') format('ttf');
 	font-weight: 200;
 }
 
@@ -102,6 +103,13 @@ strong {
 	font-weight: 600;
 }
 
+dialog {
+	display: block;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+}
+
 * {
 	outline: none;
 	font-family: "AppleSDGothicNeo", "SpoqaHanSans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
@@ -110,4 +118,12 @@ strong {
 	font-weight: 400;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	font-size: 1rem;
+}
+
+:focus-visible {
+	outline: #4570ff auto 1px;
+}
+
+.mousedown *:focus {
+	outline: none;
 }

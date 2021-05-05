@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from 'pages/HomePage'
 import NotFound from 'pages/NotFound'
 // Containers
-import Modal from 'containers/modal'
+import Modal from 'containers/Modal'
 import Snackbar from 'containers/common/Snackbar'
 
 const App = () => {
@@ -12,7 +12,9 @@ const App = () => {
 			<Route path="/" component={HomePage} exact />
 			<Route path="*" component={NotFound} status={404} />
 		</Switch>
+
 		<Modal /> {/* Modal Position */}
+
 		<Snackbar /> {/* Snackbar Position */}
 	</>);
 }

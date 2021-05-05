@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 // containers
-import InfoModal from 'containers/modal/Info'
+// import InfoModal from 'containers/modal/Info'
 // modules
-import { pushModal } from 'modules/modal'
+import { pushModal } from 'slices/modal'
 // lib
 import { transition } from 'lib/styles/styles'
 import palette from 'lib/styles/palette'
@@ -11,9 +11,12 @@ import palette from 'lib/styles/palette'
 const Btn = () => {
 	const dispatch = useDispatch();
 
-	const modalOn = () => {
-		dispatch(pushModal('INFO', InfoModal, {title: "Simple"}));
-	};
+	
+	const modalOn = () => dispatch(pushModal({
+		name: 'Info',
+		args: { title: "Simple" }
+	}));
+
 
 	return <Button onClick={modalOn}>Simple</Button>
 }

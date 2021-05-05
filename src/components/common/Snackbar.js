@@ -7,15 +7,15 @@ import palette from 'lib/styles/palette'
 import animations from 'lib/styles/animations'
 
 /*
-	onCLick: <function> snackbar closing function
-	text: <string> snackbar content
+	onClick: <function> snackbar closing function
+	message: <string> snackbar message
 	type: <string> snackbar type [info|success|warning|error]
 */
-const Snackbar = ({onClick, text, type})=> {
+const Snackbar = ({onClick, message, type})=> {
 	return (
 	  <Container onClick={onClick} type={type}>
 	  	<Content>
-	  	  <Message>{text}</Message>
+	  	  <Message>{message}</Message>
 	  	</Content>
 	  </Container>
 	);
@@ -27,16 +27,16 @@ const Container = styled.div`
 	height: auto;
 	max-height: 800px;
 	background-color: ${ props => {
-			if (props.type === 'success') {
+			if (props.type === 'SUCCESS') {
 				return palette.green;
-			} else if (props.type === 'warning') {
+			} else if (props.type === 'WARNING') {
 				return palette.red;
-			} else if (props.type === 'error') {
+			} else if (props.type === 'ERROR') {
 				return palette.orange;
-			} else if (props.type === 'info') {
-				return palette.gray7;
-			} else {
+			} else if (props.type === 'INFO') {
 				return palette.blue4;
+			} else {
+				return palette.gray7;
 			}
 		}};
 	box-shadow: ${styles.boxShadow.regular};

@@ -1,5 +1,5 @@
 import React from 'react'
-import reducer, * as actions from 'modules/modal'
+import reducer, * as actions from 'slices/modal'
 
 describe('modal', () => {
 	let state = reducer(undefined, {});
