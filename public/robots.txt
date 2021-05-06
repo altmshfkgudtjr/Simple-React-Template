@@ -1,2 +1,7 @@
 User-agent: *
 Disallow: *
+Disallow: /
+
+User-agent: Googlebot
+User-agent: Yeti
+Allow: /write-allow-url

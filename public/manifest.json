@@ -1,15 +1,19 @@
 {
-  "short_name": "APP-NAME",
-  "name": "Display App Name",
-  "icons": [
-    {
-      "src": "favicons/favicon_96x96.png",
-      "sizes": "96x96 48x48 24x24",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+	"name":"App-Name",
+	"short_name":"App-Short-Name",
+	"icons":[
+		{
+			"src":"/favicons/android-chrome-192x192.png",
+			"sizes":"192x192",
+			"type":"image/png"
+		},
+		{
+			"src":"/favicons/android-chrome-512x512.png",
+			"sizes":"512x512",
+			"type":"image/png"
+		}
+	],
+	"theme_color":"#ffffff",
+	"background_color":"#ffffff",
+	"display":"standalone"
 }

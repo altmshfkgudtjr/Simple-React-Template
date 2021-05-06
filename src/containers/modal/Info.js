@@ -9,16 +9,25 @@ import media from 'lib/styles/media'
 import * as styles from 'lib/styles/styles'
 import animations from 'lib/styles/animations'
 // modules
-import { newSnackbar } from 'modules/snackbar'
+import { newSnackbar } from 'slices/snackbar'
 
-/*
-	PreventModalOff: <function> Default function, Don't remove.
-	ModalOff: <function> Default function, Don't remove.
-	args: <Dictionary> Arguments
-*/
-const InfoModal = ({ PreventModalOff, ModalOff, args }) => {
+
+/**
+ * Info Modal
+ * @param {object} props
+ * @param {Function} props.PreventModalOff Default function, Don't remove.
+ * @param {Function} props.ModalOff Modal closing function
+ * @param {object} props.args Modal parameters object
+ */
+export const Info = ({ PreventModalOff, ModalOff, args }) => {
 	const dispatch = useDispatch();
-	const onClickBadge = () => dispatch(newSnackbar('Simple is best.'));
+
+	
+	const onClickBadge = () => dispatch(newSnackbar({
+		type: "INFO",
+		message: "Simple is best."
+	}));
+
 
 	return (
 	  <Container onMouseDown={PreventModalOff}>
@@ -75,5 +84,3 @@ const TitleWrapper = styled.div`
 		margin-top: 4rem;
 	}
 `;
-
-export default InfoModal
