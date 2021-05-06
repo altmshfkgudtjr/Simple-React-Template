@@ -40,7 +40,7 @@ export const getPost = (postId) => {
  * @param {object} content Post content to upate
  */
 export const updatePost = (postId, content) => {
-	return Fetch(`/post/${postId}`, 'UPDATE', content)
+	return Fetch(`/post/${postId}`, 'PATCH', content)
 	.then(res => {
 		if (res.success) return res.result;
 		else return Promise.reject(res.result);

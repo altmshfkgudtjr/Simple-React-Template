@@ -5,11 +5,9 @@
 	"private": false,
 	"scripts": {
 		"start": "react-scripts start",
-		"prebuild": "react-scripts test --watchAll=false",
-		"build": "react-scripts build",
-		"postbuild": "cp -r build/* ../backend/src/client",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"prebuild": "react-scripts test --watchAll=false",
+		"build": "react-scripts build"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.5.1",

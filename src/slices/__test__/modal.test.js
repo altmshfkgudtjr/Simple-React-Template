@@ -1,60 +1,73 @@
-import React from 'react'
 import reducer, * as actions from 'slices/modal'
 
 describe('modal', () => {
 	let state = reducer(undefined, {});
 
+
 	beforeEach(() => {
 		state = reducer(undefined, {});
 	});
 
+
 	it('should create actions.', () => {
+		const payload = undefined;
 		const expectedActions = [
-			{ type: 'modal/PUSH_MODAL', payload: {id: '', elem: null, args: undefined} },
-			{ type: 'modal/POP_MODAL' },
-			{ type: 'modal/DELETE_MODAL', payload: '' },
-			{ type: 'modal/CLEAR_MODAL' },
+			{ type: 'modal/pushModal', payload: { name: 'TestModal', args: undefined }},
+			{ type: 'modal/popModal', payload },
+			{ type: 'modal/deleteModal', payload: 'TestModal' },
+			{ type: 'modal/clearModal', payload },
 		];
 		const modalActions = [
-			actions.pushModal('', null, undefined),
+			actions.pushModal({ name: 'TestModal', args: undefined }),
 			actions.popModal(),
-			actions.deleteModal(''),
+			actions.deleteModal('TestModal'),
 			actions.clearModal(),
 		];
 		expect(modalActions).toEqual(expectedActions);
 	});
+
 
 	describe('reducer', () => {
 		it('should return the initialState.', () => {
 			expect(state.modalList).toEqual([]);
 		});
 
+
 		it('should push a modal.', () => {
-			const elem = <div id="test-div" />;
 			const args = {'key': 'value'};
-			state = reducer(state, actions.pushModal('TEST', elem, args));
-			expect(state.modalList[0]['id']).toBe('TEST');
-			expect(state.modalList[0]['elem']).toEqual(elem);
+			state = reducer(state, actions.pushModal({ 
+				name: 'TestModal', 
+				args 
+			}));
+			expect(state.modalList[0]['name']).toBe('TestModal');
 			expect(state.modalList[0]['args']).toEqual(args);
 		});
 
+
 		it('should pop a modal.', () => {
-			const elem = <div id="test-div" />;
 			const args = {'key': 'value'};
-			state = reducer(state, actions.pushModal('TEST', elem, args));
-			
+			state = reducer(state, actions.pushModal({ 
+				name: 'TestModal', 
+				args 
+			}));
 			state = reducer(state, actions.popModal());
 			expect(state.modalList).toEqual([]);
 		});
 
+
 		it('should delete the modal.', () => {
-			const elem = <div id="test-div" />;
 			const args = {'key': 'value'};
-			state = reducer(state, actions.pushModal('TEST_1', elem, args));
-			state = reducer(state, actions.pushModal('TEST_2', elem, args));
+			state = reducer(state, actions.pushModal({ 
+				name: 'TestModal_1', 
+				args 
+			}));
+			state = reducer(state, actions.pushModal({ 
+				name: 'TestModal_2', 
+				args 
+			}));
 			
-			state = reducer(state, actions.deleteModal('TEST_1'));
-			expect(state.modalList[0]['id']).toBe('TEST_2');
+			state = reducer(state, actions.deleteModal('TestModal_1'));
+			expect(state.modalList[0]['name']).toBe('TestModal_2');
 		});
 	});
 });

@@ -1,7 +1,5 @@
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-// containers
-// import InfoModal from 'containers/modal/Info'
 // modules
 import { pushModal } from 'slices/modal'
 // lib

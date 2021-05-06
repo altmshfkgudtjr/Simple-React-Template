@@ -25,7 +25,6 @@ const ModalSlice = createSlice({
 		pushModal(state, action) {
 			const filtered = state.modalList.filter(modal => modal.name === action.payload.name);
 			if (filtered.length > 0) return;
-
 			state.modalList.push(action.payload);
 		},
 		/* Modal pop */

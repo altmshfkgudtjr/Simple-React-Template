@@ -1,3 +1,3 @@
 export { Info } from "containers/modal/Info";
 // ...
-// Write other modals
+// export { Other } from "containers/modal/Other"

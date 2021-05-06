@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from 'pages/HomePage'
 import NotFound from 'pages/NotFound'
 // Containers
-import Modal from 'containers/Modal'
+import Modal from 'containers/common/Modal'
 import Snackbar from 'containers/common/Snackbar'
 
 const App = () => {

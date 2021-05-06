@@ -10,7 +10,6 @@ import { popModal, deleteModal } from 'slices/modal'
 const Modal = ()=> {
 	const dispatch = useDispatch();
 	const modalList = useSelector(state => state.modal.modalList);
-
 	const isShow = modalList.length !== 0;
 	
 
